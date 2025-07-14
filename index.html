@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cleanoz - Solusi Hemat BBM & Perawatan Mesin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* CSS Variables - Palet Warna Dark Mode Modern */
+      :root {
+        --bg-dark: #121212;
+        --bg-card: #1e1e1e;
+        --bg-accent: #2a2d34;
+        --text-primary: #ffffff;
+        --text-secondary: #b3b3b3;
+        --accent-green: #4caf50;
+        --accent-orange: #ff9800;
+        --border-color: #333;
+      }
+
+      /* Reset & Global Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        line-height: 1.7;
+        color: var(--text-secondary);
+        background-color: var(--bg-dark);
+        display: flex;
+        justify-content: center;
+        padding: 20px 15px;
+      }
+
+      .wrapper {
+        width: 100%;
+        max-width: 600px; /* Lebar optimal untuk konten */
+      }
+
+      h2 {
+        color: var(--text-primary);
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        font-weight: 800;
+      }
+
+      h3 {
+        color: var(--text-primary);
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      strong {
+        color: var(--text-primary);
+      }
+
+      /* --- Hero/Header Section --- */
+      .hero-card {
+        background-color: var(--bg-card);
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        border: 1px solid var(--border-color);
+        margin-bottom: 25px;
+      }
+      .hero-card .subheadline {
+        color: var(--accent-green);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      .hero-card h1 {
+        color: var(--text-primary);
+        font-size: 2.2rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+      .hero-card .hero-image {
+        width: 100%;
+        max-width: 300px;
+        margin: 20px 0;
+        border-radius: 15px;
+      }
+      .cta-button {
+        display: inline-block;
+        width: 100%;
+        background-color: var(--accent-orange);
+        color: #121212;
+        padding: 18px;
+        font-size: 1.1rem;
+        font-weight: 800;
+        text-decoration: none;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        text-transform: uppercase;
+        margin-top: 1rem;
+      }
+      .cta-button:hover {
+        background-color: #ffac33;
+        transform: translateY(-3px);
+      }
+      .cta-bonus-text {
+        font-size: 0.8rem;
+        margin-top: 10px;
+        opacity: 0.8;
+      }
+
+      /* --- Accordion Styling --- */
+      .accordion-item {
+        background-color: var(--bg-card);
+        border-radius: 15px;
+        margin-bottom: 15px;
+        border: 1px solid var(--border-color);
+        overflow: hidden;
+      }
+      .accordion-item summary {
+        font-size: 1.1rem;
+        font-weight: 700;
+        padding: 20px;
+        cursor: pointer;
+        outline: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--text-primary);
+      }
+      .accordion-item summary::after {
+        content: "+";
+        font-size: 1.8rem;
+        font-weight: 400;
+        transition: transform 0.3s ease;
+      }
+      .accordion-item[open] summary::after {
+        content: "−";
+        transform: rotate(180deg);
+      }
+      .accordion-content {
+        padding: 0 20px 20px 20px;
+      }
+      .accordion-content p,
+      .accordion-content li {
+        font-size: 0.95rem;
+      }
+      .accordion-content img {
+        border-radius: 10px;
+        margin-top: 15px;
+        max-width: 100%;
+      }
+
+      /* --- Content Specific Styling --- */
+      .problem-list {
+        list-style: none;
+        margin-top: 1rem;
+      }
+      .problem-list li {
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+      }
+      .problem-list li::before {
+        content: "❌";
+        margin-right: 10px;
+      }
+      .highlight-problem {
+        margin-top: 1.5rem;
+        padding: 15px;
+        background-color: rgba(231, 76, 60, 0.1);
+        color: #e74c3c;
+        border-radius: 10px;
+        border: 1px solid #e74c3c;
+        font-weight: 700;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        list-style: none;
+        margin-top: 1rem;
+      }
+      .benefits-grid li {
+        background-color: var(--bg-accent);
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .benefits-grid .benefit-icon {
+        font-size: 2rem;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 1rem;
+      }
+
+      .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 */
+        height: 0;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+      }
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .guarantee-bonus-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 1rem;
+      }
+      @media (min-width: 500px) {
+        .guarantee-bonus-grid {
+          grid-template-columns: 1fr 1fr;
+          align-items: center;
+        }
+      }
+      .guarantee-list {
+        list-style: none;
+      }
+      .guarantee-list li {
+        padding: 5px 0;
+        display: flex;
+        align-items: center;
+      }
+      .guarantee-list li::before {
+        content: "✅";
+        margin-right: 10px;
+      }
+
+      /* --- Footer --- */
+      .footer {
+        text-align: center;
+        padding: 30px 20px;
+        margin-top: 20px;
+        border-top: 1px solid var(--border-color);
+      }
+      .footer .tagline {
+        color: var(--accent-green);
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- HERO CARD UTAMA -->
+      <section class="hero-card">
+        <p class="subheadline">GAS TIPIS, ANTI KRISIS!</p>
+        <h1>Boros Bensin Bikin Dompet Tipis?</h1>
+        <p>
+          Tiga tetes Cleanoz bukan cuma irit, tapi bikin mesin enteng, suara
+          halus, dan hemat biaya servis!
+        </p>
+        <img
+          src="https://cdn.scalev.id/Image/Rp5bncNEKTSLhA5K_xPNamJBuH7xu4s3sST2R3zxgQg/1740105550114-images_7642981710837559675_1.webp"
+          alt="Produk Cleanoz"
+          class="hero-image"
+        />
+        <a href="#cta" class="cta-button">KIRIM SAYA CLEANOZ</a>
+        <p class="cta-bonus-text">Plus Bonus Emas 24K Menanti!</p>
+      </section>
+
+      <!-- ACCORDION CONTAINER -->
+      <main>
+        <!-- 1. MASALAH ANDA -->
+        <details class="accordion-item">
+          <summary>Pernah Ngerasa Gaji Habis Buat Bensin?</summary>
+          <div class="accordion-content">
+            <p>
+              Tarikan motor makin berat. Dompet makin sesak.
+              <strong>Hidup rasanya diem di tempat.</strong>
+            </p>
+            <img
+              src="https://cdn.scalev.id/Image/WjYbTMfsRQ5_95XzAAe9aI8H88dv77H0suUWZm2CRds/1740110069436-images_3499951710837471855.webp"
+              alt="Pria khawatir memegang helm"
+            />
+            <ul class="problem-list">
+              <li>Bensin makin mahal, tapi kerja nggak bisa berhenti.</li>
+              <li>Mesin makin berat, keluar biaya servis makin mahal.</li>
+              <li>Udah irit-irit, tetap habis cuma buat beli bensin.</li>
+              <li>Mau nabung, susah. Habis buat jalan terus.</li>
+              <li>Capek rasanya, kayak kerja nggak pernah cukup.</li>
+            </ul>
+            <div class="highlight-problem">
+              Kalau masih ngandelin cara lama, ya bakal
+              <strong>ngerasa capek terus.</strong>
+            </div>
+          </div>
+        </details>
+
+        <!-- 2. SOLUSI & KEUNTUNGAN -->
+        <details class="accordion-item">
+          <summary>Bagaimana Cleanoz Mengatasi Krisis Anda?</summary>
+          <div class="accordion-content">
+            <p>
+              Cleanoz adalah
+              <strong>cara rakyat kecil ngelawan krisis.</strong> Setiap
+              tetesnya menyimpan tenaga besar untuk membuat hidup tetap jalan.
+            </p>
+            <img
+              src="https://cdn.scalev.id/Image/JUtBttAUoiW87a5FtXQkrp4Vh50Av4WGh6aq6qt_gzw/save.gif"
+              alt="GIF Mesin Bekerja"
+            />
+            <h3>6 Keuntungan Langsung yang Anda Rasakan:</h3>
+            <ul class="benefits-grid">
+              <li><span class="benefit-icon">⛽</span>Irit BBM 20-40%</li>
+              <li><span class="benefit-icon">🚀</span>Tarikan Enteng</li>
+              <li><span class="benefit-icon">🔇</span>Suara Halus</li>
+              <li><span class="benefit-icon">🛡️</span>Cegah Kerusakan</li>
+              <li><span class="benefit-icon">⚡</span>Hasil Cepat</li>
+              <li><span class="benefit-icon">🛢️</span>Oli 2x Lebih Awet</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- 3. BUKTI & TESTIMONI -->
+        <details class="accordion-item">
+          <summary>Lebih dari 137.000 Kendaraan Telah Membuktikan</summary>
+          <div class="accordion-content">
+            <h3>Lihat Kata Mereka:</h3>
+            <div class="video-container">
+              <iframe
+                src="https://www.youtube.com/embed/VS77po73Ylo"
+                title="Testimoni Cleanoz Pak Arli"
+                frameborder="0"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="video-container">
+              <iframe
+                src="https://www.youtube.com/embed/bemupKqha2M"
+                title="Testimoni Ridwan Hanif"
+                frameborder="0"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <h3>Testimoni dari WhatsApp & Sosial Media:</h3>
+            <div class="testimonial-grid">
+              <img
+                src="https://cdn.scalev.id/Image/yvVYvCfNskdCJpCCYr7hl_20JVaQc4NsSuwUC7paH6g/1740106471143-images_8242131732162002708.webp"
+                alt="Testimoni Chat 1"
+              />
+              <img
+                src="https://cdn.scalev.id/Image/sEtUpeuCGwYjDRYSWOYN4nzW03p7sXTvy6KJUuReRTE/1740106560493-images_5368361732162116127_1.webp"
+                alt="Testimoni Chat 2"
+              />
+              <img
+                src="https://cdn.scalev.id/Image/RrNcD8TLCq5Y_KFbNpi7M_PFcMri4MUNGoqFqG--h84/1740106664357-images_9440881732162370426.webp"
+                alt="Testimoni Chat 3"
+              />
+              <img
+                src="https://i.ytimg.com/vi/vgjzF0JqfoM/hqdefault.jpg"
+                alt="Testimoni Youtube thumbnail"
+              />
+            </div>
+          </div>
+        </details>
+
+        <!-- 4. JAMINAN & BONUS -->
+        <details class="accordion-item">
+          <summary>Jaminan Aman + Bonus Emas 24K!</summary>
+          <div class="accordion-content">
+            <h3>Jaminan Pengguna:</h3>
+            <div class="guarantee-bonus-grid">
+              <div>
+                <ul class="guarantee-list">
+                  <li>Aman untuk semua mesin bensin & solar.</li>
+                  <li>Teruji di 137.000+ kendaraan.</li>
+                  <li>Tidak ada efek samping negatif.</li>
+                  <li>Penggunaan super praktis (tinggal tetes).</li>
+                </ul>
+              </div>
+              <div>
+                <img
+                  src="https://cdn.scalev.id/Image/PDu4pBDZ1P69C58iKpyUauDJ6isztnAofWHyt0EuY1U/1740108079282-images_9704621732158234215.webp"
+                  alt="Kemasan Cleanoz Unik"
+                />
+              </div>
+            </div>
+
+            <h3 style="margin-top: 2rem">
+              Bonus Emas 24K Setiap Pembelian 1 Kotak
+            </h3>
+            <p>
+              Beli 1 Kotak (isi 4 botol) dan dapatkan bonus emas asli yang bikin
+              pembelian Anda makin untung!
+            </p>
+            <img
+              src="https://cdn.scalev.id/Image/eMITD5IVVjei4y2QcFcPT7ahFvyk7t55HpPv94fx_qA/1740108102829-images_7016781731659141551.webp"
+              alt="Bonus Emas 24K Blessgold"
+            />
+          </div>
+        </details>
+      </main>
+
+      <!-- FINAL CTA CARD -->
+      <section class="hero-card" id="cta">
+        <h2>Saatnya Anda Merasakan Perbedaannya!</h2>
+        <p>
+          CleanOZ adalah <strong>solusi merawat kendaraan</strong> agar mesin
+          sehat, tarikan enteng, BBM hemat, dan dompet lebih aman.
+        </p>
+        <img
+          src="https://cdn.scalev.id/Image/d6J120s-MAiouxwubFFk9xShj-AJvDmWrm-jYqFC0Fg/1740105489408-images_8188821710837559593.webp"
+          alt="Pria tersenyum dengan Cleanoz"
+          style="
+            max-width: 200px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-green);
+          "
+        />
+        <a
+          href="#"
+          class="cta-button"
+          onclick="alert('Terima kasih! Silakan hubungi customer service kami untuk pemesanan.')"
+        >
+          KIRIM SAYA CLEANOZ SEKARANG
+        </a>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <p class="tagline">
+          Hidup memang berat. Tapi rakyat kecil nggak boleh kalah.
+        </p>
+        <p>
+          Cleanoz adalah gerakan <strong>#AntiKrisis.</strong><br />Karena
+          setiap tetesnya adalah <strong>tenaga buat hidup tetap jalan.</strong>
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      // JavaScript untuk memastikan hanya satu item accordion yang terbuka dalam satu waktu
+      document.querySelectorAll(".accordion-item").forEach((item) => {
+        item.addEventListener("toggle", (event) => {
+          if (item.open) {
+            document
+              .querySelectorAll(".accordion-item")
+              .forEach((otherItem) => {
+                if (otherItem !== item) {
+                  otherItem.open = false;
+                }
+              });
+          }
+        });
+      });
+
+      // Smooth scrolling untuk link CTA
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
